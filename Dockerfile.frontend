@@ -1,0 +1,24 @@
+# Base image for Node.js
+FROM node:22-alpine AS builder
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the SolidJS project files
+COPY frontend/package.json ./
+COPY frontend/ ./
+
+# Install dependencies and build the app
+RUN npm install && npm run build
+
+# Production image
+FROM nginx:alpine
+
+# Copy the build output to the Nginx HTML directory
+COPY --from=builder /app/build/client /usr/share/nginx/html
+
+# Expose Nginx default port
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "3000:3000" # Map backend service to host port
+    depends_on:
+      - frontend # Wait for frontend to be built for static serving
+    volumes:
+      - ./backend/certs:/app/certs # Mount TLS certificates for HTTP/2
+    environment:
+      RUST_LOG: "info"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8080:80" # Serve frontend for debugging directly
+    volumes:
+      - ./frontend:/app # Mount source for live development (optional)

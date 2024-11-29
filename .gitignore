@@ -1,0 +1,18 @@
+# backend
+
+/backend/certs/
+/backend/target/
+
+# frontend
+
+/frontend/.yarn/*
+!/frontend/.yarn/cache
+!/frontend/.yarn/patches
+!/frontend/.yarn/plugins
+!/frontend/.yarn/releases
+!/frontend/.yarn/sdks
+!/frontend/.yarn/versions
+
+/frontend/.vite/
+
+/frontend/dist/
