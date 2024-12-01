@@ -5,8 +5,8 @@
 
 # frontend
 
+/frontend/.pnp.*
 /frontend/.yarn/*
-!/frontend/.yarn/cache
 !/frontend/.yarn/patches
 !/frontend/.yarn/plugins
 !/frontend/.yarn/releases
